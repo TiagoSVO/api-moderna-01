@@ -1,9 +1,9 @@
 module.exports = {
   dialect: "postgres",
   host: "localhost",
-  username: "cstic",
-  password: "cstic",
-  database: "api-moderno-01",
+  username: "tiagosvo",
+  password: "tiagosvo",
+  database: "api_moderno_01",
   define: {
     timestamp: true,
     underscore: true,
