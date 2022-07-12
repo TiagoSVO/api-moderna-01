@@ -1,3 +1,5 @@
+import Customer from "../models/Customer";
+
 const customers = [
   { id: 1, name: "TiagoSVO", site: "https://tiagosvo.github.io/" },
   { id: 2, name: "Google", site: "https://google.com" },
@@ -21,9 +23,12 @@ const getLastCustomer = () => {
 };
 
 class CustomersControllers {
-  index(req, res) {
+  async index(req, res) {
+    const data = await Customer.findAll({
+      limit: 1000,
+    });
     const status = 200;
-    return res.status(status).json(customers);
+    return res.status(status).json(data);
   }
 
   show(req, res) {
