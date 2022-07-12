@@ -6,7 +6,7 @@ module.exports = {
   database: "api_moderno_01",
   define: {
     timestamp: true,
-    underscore: true,
-    underscoreAll: true,
+    underscored: true,
+    underscoredAll: true,
   },
 };
