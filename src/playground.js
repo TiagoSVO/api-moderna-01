@@ -3,11 +3,21 @@ import { Op } from "sequelize";
 import "./database";
 
 import Customer from "./app/models/Customer";
+import Contact from "./app/models/Contact";
 
 class Playground {
   static async play() {
     const customers = await Customer.findAll({
       attributes: { exclude: ["id", "status"] },
+      include: {
+        model: Contact,
+        where: {
+          status: {
+            [Op.in]: ["ACTIVE", "ARCHIEVED"],
+          },
+        },
+        required: false,
+      },
       where: {
         [Op.or]: {
           status: {
