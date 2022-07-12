@@ -37,6 +37,11 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable("contacts");
+    return queryInterface.sequelize.transaction(async (transaction) => {
+      await queryInterface.dropTable("contacts", { transaction });
+      await queryInterface.sequelize.query("DROP TYPE enum_contacts_status", {
+        transaction,
+      });
+    });
   },
 };
