@@ -31,6 +31,9 @@ class Playground {
           [Op.between]: [new Date(2022, 1, 1), new Date(2022, 12, 31)],
         },
       },
+      order: [["name", "desc"], "createdAt"],
+      limit: 3,
+      offset: 3 * 1 - 3, // limit * page - limit
     });
 
     console.log(JSON.stringify(customers, null, 2));
