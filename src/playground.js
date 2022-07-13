@@ -47,10 +47,20 @@ class Playground {
 
     const customersCount = await Customer.count();
 
+    const customerScope = await Customer.scope("active").findAll();
+
+    const customerScopeMethod = await Customer.scope({
+      method: ["created", new Date(2022, 12, 12)],
+    }).findAll();
+
     console.log(JSON.stringify(customers, null, 2));
     console.log(`Min createdAt: ${JSON.stringify(customersMin, null, 2)}`);
     console.log(`Max createdAt: ${JSON.stringify(customersMax, null, 2)}`);
     console.log(`Count registers: ${JSON.stringify(customersCount, null, 2)}`);
+    console.log(`Scoped query: ${JSON.stringify(customerScope, null, 2)}`);
+    console.log(
+      `Scopedmethod query: ${JSON.stringify(customerScopeMethod, null, 2)}`
+    );
   }
 }
 
