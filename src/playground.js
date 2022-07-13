@@ -7,6 +7,7 @@ import Contact from "./app/models/Contact";
 
 class Playground {
   static async play() {
+    // Funções de agregação: min, max, sum, count
     const customers = await Customer.findAll({
       attributes: { exclude: ["id", "status"] },
       include: {
@@ -36,7 +37,20 @@ class Playground {
       offset: 3 * 1 - 3, // limit * page - limit
     });
 
+    const customersMin = await Customer.min("createdAt", {
+      where: { status: "ACTIVE" },
+    });
+
+    const customersMax = await Customer.max("createdAt", {
+      where: { status: "ACTIVE" },
+    });
+
+    const customersCount = await Customer.count();
+
     console.log(JSON.stringify(customers, null, 2));
+    console.log(`Min createdAt: ${JSON.stringify(customersMin, null, 2)}`);
+    console.log(`Max createdAt: ${JSON.stringify(customersMax, null, 2)}`);
+    console.log(`Count registers: ${JSON.stringify(customersCount, null, 2)}`);
   }
 }
 
