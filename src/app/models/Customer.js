@@ -26,6 +26,12 @@ class Customer extends Model {
             };
           },
         },
+        hooks: {
+          beforeValidate: (customer) => {
+            // eslint-disable-next-line no-param-reassign
+            customer.status = "ARCHIEVED";
+          },
+        },
         sequelize,
       }
     );
